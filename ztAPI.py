@@ -1,3 +1,4 @@
+from random import choice
 from requests import Session, Response
 
 class ztAPI:
@@ -30,7 +31,8 @@ class ztAPI:
 			'name': data['name'],
 			'description': data['description'],
 			'lastOnline': offlineTime,
-			'IP': data['physicalAddress']
+			'IP': data['physicalAddress'],
+			'zIP': choice(data['config']['ipAssignments']) if data['config']['ipAssignments'] else None
 		}
 
 	def listNetworkMembers(self, networkId:'str'):
