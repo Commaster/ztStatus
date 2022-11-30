@@ -51,7 +51,7 @@ class ztStatus:
 					not self._lastState[memberId]['lastOnline']:
 					changes = True
 			else:
-				text.append(f"\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}", style=("green" if memberId not in self._lastState or not self._lastState[memberId]['lastOnline'] else "white on green"))
+				text.append(f"\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}{'' if memberInfo['zIP'] is None else ' -> ' + memberInfo['zIP']}", style=("green" if memberId not in self._lastState or not self._lastState[memberId]['lastOnline'] else "white on green"))
 				if memberId in self._lastState and \
 					self._lastState[memberId]['lastOnline']:
 					changes = True

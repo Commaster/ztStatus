@@ -20,7 +20,7 @@ def ztconsole():
 			if memberInfo['lastOnline']:
 				print(f"\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}    {Fore.RED}{memberInfo['lastOnline']}{Fore.RESET}")
 			else:
-				print(f"\t{Fore.GREEN}{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}{Fore.RESET}")
+				print(f"\t{Fore.GREEN}{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}{'' if memberInfo['zIP'] is None else ' -> ' + memberInfo['zIP']}{Fore.RESET}")
 
 if __name__ == "__main__":
 	try:
