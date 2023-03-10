@@ -5,7 +5,7 @@ class ztAPI:
 	def __init__(self, token:'str'):
 		self.net = Session()
 		self.net.headers.update({
-			'UserAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:93.0) Gecko/20100101 Firefox/93.0',
+			'UserAgent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:102.0) Gecko/20100101 Firefox/102.0',
 			'Authorization': 'token ' + token
 		})
 
@@ -31,6 +31,7 @@ class ztAPI:
 			'name': data['name'],
 			'description': data['description'],
 			'lastOnline': offlineTime,
+			'version': data['clientVersion'],
 			'IP': data['physicalAddress'],
 			'zIP': choice(data['config']['ipAssignments']) if data['config']['ipAssignments'] else None
 		}

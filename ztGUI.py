@@ -45,13 +45,13 @@ class ztStatus:
 		for memberId, memberInfo in networkMembers.items():
 			text = Text()
 			if memberInfo['lastOnline']:
-				text.append(f"\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}    ", style=(None if memberId not in self._lastState or self._lastState[memberId]['lastOnline'] else "white on red"))
+				text.append(f"{memberInfo['version']}\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}    ", style=(None if memberId not in self._lastState or self._lastState[memberId]['lastOnline'] else "white on red"))
 				text.append(f"{memberInfo['lastOnline']}", style=("red" if memberId not in self._lastState or self._lastState[memberId]['lastOnline'] else "white on red"))
 				if memberId in self._lastState and \
 					not self._lastState[memberId]['lastOnline']:
 					changes = True
 			else:
-				text.append(f"\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}{'' if memberInfo['zIP'] is None else ' -> ' + memberInfo['zIP']}", style=("green" if memberId not in self._lastState or not self._lastState[memberId]['lastOnline'] else "white on green"))
+				text.append(f"{memberInfo['version']}\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}{'' if memberInfo['zIP'] is None else ' -> ' + memberInfo['zIP']}", style=("green" if memberId not in self._lastState or not self._lastState[memberId]['lastOnline'] else "white on green"))
 				if memberId in self._lastState and \
 					self._lastState[memberId]['lastOnline']:
 					changes = True
