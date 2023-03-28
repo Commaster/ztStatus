@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 from time import sleep
+from datetime import datetime
 from ztAPI import ztAPI
 from ztConfig import ztConfig
 
@@ -21,10 +22,14 @@ class ztHeader:
 		grid = Table.grid(expand=True)
 		grid.add_column(justify="left", ratio=1)
 		grid.add_column(justify="right")
+		grid.add_column(justify="right")
 		networkInfo = self._api.networkInfo(self._networkId)
+		clock = datetime.fromtimestamp(networkInfo['clock']/1000)
+		countLen = len(str(networkInfo['authorizedMemberCount']))
 		grid.add_row(
 			f"{networkInfo['config']['name']}[{networkInfo['config']['id']}]:",
-			f"{networkInfo['onlineMemberCount']}/{networkInfo['authorizedMemberCount']}",
+			Text.assemble(f"[{clock.strftime('%H')}", (":", "blink"), f"{clock.strftime('%M')}", (":", "blink"), f"{clock.strftime('%S')}]", style="magenta"),
+			f" {networkInfo['onlineMemberCount']:{countLen}d}/{networkInfo['authorizedMemberCount']}",
 		)
 		return Panel(grid, box=SQUARE, title="ZeroTier status", style="white on black")
 
