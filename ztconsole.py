@@ -17,10 +17,11 @@ def ztconsole():
 		print(f"{networkName}[{networkId}]: {networkInfo['onlineMemberCount']}/{networkInfo['authorizedMemberCount']}")
 		networkMembers = api.listNetworkMembers(networkId)
 		for memberId, memberInfo in networkMembers.items():
-			if memberInfo['lastOnline']:
-				print(f"{memberInfo['version']}\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}    {Fore.RED}{memberInfo['lastOnline']}{Fore.RESET}")
-			else:
-				print(f"{Fore.GREEN}{memberInfo['version']}\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}{'' if memberInfo['zIP'] is None else ' -> ' + memberInfo['zIP']}{Fore.RESET}")
+			if not memberInfo['hidden']:
+				if memberInfo['lastOnline']:
+					print(f"{memberInfo['version']}\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}    {Fore.RED}{memberInfo['lastOnline']}{Fore.RESET}")
+				else:
+					print(f"{Fore.GREEN}{memberInfo['version']}\t{memberInfo['name']}({memberInfo['description']}) [{memberId}]: {memberInfo['IP']}{'' if memberInfo['zIP'] is None else ' -> ' + memberInfo['zIP']}{Fore.RESET}")
 
 if __name__ == "__main__":
 	try:

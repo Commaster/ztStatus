@@ -30,6 +30,7 @@ class ztAPI:
 		return {
 			'name': data['name'],
 			'description': data['description'],
+			'hidden': data['hidden'],
 			'lastOnline': offlineTime,
 			'version': data['clientVersion'],
 			'IP': data['physicalAddress'],
