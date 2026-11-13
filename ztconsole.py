@@ -14,7 +14,7 @@ def ztconsole():
 	myNetworks = api.listNetworks()
 	for networkId, networkName in myNetworks.items():
 		networkInfo = api.networkInfo(networkId)
-		print(f"{networkName}[{networkId}]: {networkInfo['onlineMemberCount']}/{networkInfo['authorizedMemberCount']}")
+		print(f"{networkName}[{networkId}]: {networkInfo['authorizedMemberCount']}")
 		networkMembers = api.listNetworkMembers(networkId)
 		for memberId, memberInfo in networkMembers.items():
 			if not memberInfo['hidden']:
